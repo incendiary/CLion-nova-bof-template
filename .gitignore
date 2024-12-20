@@ -1,3 +1,18 @@
+# CMake build directories
+cmake-build-*
+build/
+
+# Object files
+*.o
+
+# Executables
+*.exe
+*.out
+
+# IDE config
+.idea/
+*.iml
+
 # Object Files
 *.o
 
