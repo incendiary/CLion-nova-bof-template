@@ -10,9 +10,9 @@ compile() {
       if [ ! -f obj/${1}.${arch}.o -o src/${1}.c -nt obj/${1}.${arch}.o ] ; then
          echo "Compile obj/$1.${arch}.o"
          if [ "${arch}" == "x64" ] ; then
-            ${CC_x64} -o obj/${1}.${arch}.o -c src/${1}.c -masm=intel -Wall -I../
+            ${CC_x64} -o obj/${1}.${arch}.o -c src/${1}.c -masm=intel -Wall -I../include
          else
-            ${CC_x86} -o obj/${1}.${arch}.o -c src/${1}.c -masm=intel -Wall -I../
+            ${CC_x86} -o obj/${1}.${arch}.o -c src/${1}.c -masm=intel -Wall -I../include
          fi
       fi
    done
