@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install mingw-w64
+        run: sudo apt-get update && sudo apt-get install -y mingw-w64 cmake
+      - name: Build test BOFs
+        run: |
+          mkdir -p tests/obj
+          bash tests/build.sh
+      - name: CMake configure
+        run: cmake -B build -S .
