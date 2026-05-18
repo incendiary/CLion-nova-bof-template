@@ -1,0 +1,33 @@
+beacon_command_register(
+   "calc_popup",
+   "Hello World BOF — pops calc.exe via KERNEL32!WinExec",
+
+   "Hello World BOF — launches calc.exe via WinExec to confirm inline-execute\n" .
+   "is working in the current Beacon session.\n\n" .
+
+   "Usage:\n" .
+   "   calc_popup\n\n" .
+
+   "Arguments:\n" .
+   "   \$1 - beacon id (CS automatically adds this argument)\n\n" .
+
+   "Examples:\n" .
+   "   calc_popup\n\n"
+);
+
+# $1 - beacon id
+alias calc_popup {
+   local('$bid $barch $handle $data');
+
+   ($bid) = @_;
+
+   $barch  = barch($bid);
+
+   $handle = openf(script_resource("calc_popup. $+ $barch $+ .o"));
+   $data   = readb($handle, -1);
+   closef($handle);
+
+   btask($bid, "Running calc_popup BOF (hello world — pops calc.exe)");
+
+   beacon_inline_execute($bid, $data, "go", $null);
+}
